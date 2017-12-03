@@ -21,7 +21,6 @@ if __name__ == '__main__':
         imgarray.append(newpath + i)
 
     for x in imgarray:
-
         change = newpath + args.newname + '-' + str(imgarray.index(x)) + "." + args.extens
 
         if x == newpath + '.DS_Store':
