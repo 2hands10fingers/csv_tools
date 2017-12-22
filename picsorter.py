@@ -24,5 +24,5 @@ for i in listdir(currentpath):
             mover(i, imgsize)
             print "{} -> {}".format(i, imgsize)
     except IOError:
-        pass
+        continue
 
