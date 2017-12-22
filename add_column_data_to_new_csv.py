@@ -15,10 +15,9 @@ with open('OLD_CSV_FILE_NAME_GOES_HERE.csv', 'r') as csv_file:
 		for line in csv_reader:
 			columnIndex = line[54] #Index of the column
 			if bool(bulletOne) == True:
-        				
-        theWriter.writerow(
-			   [
-			     "<li>" + columnIndex + "</li>"
-			    ])
+				theWriter.writerow(
+			   			   [
+			                             "<li>" + columnIndex + "</li>"
+			    			    ])
 			else:
 				theWriter.writerow([])
