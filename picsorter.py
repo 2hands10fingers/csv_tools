@@ -13,15 +13,15 @@ currentpath = '.'
 def imagesize(x):
     width = image.open(x).width
     height = image.open(x).height
-    return str(width) + 'x' + str(height)
+    return "{}x{}".format(str(width), str(height))
 
 for i in listdir(currentpath):
-    imgsize = imagesize(i)
-    if (i == 'picsorter.py') or i == '.DS_Store':
-        pass
-    else:
-        print (imgsize)
+    try:
+        imgsize = imagesize(i)
         if not path.exists(imgsize):
-            mkdir(imagesize(imgsize)
-
-        shutil.move(i, imgsize)
+            mkdir(imgsize)
+        else:
+            shutil.move(i, imgsize)
+            print "{} -> {}".format(i, imgsize)
+    except IOError:
+        pass
