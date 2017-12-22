@@ -6,14 +6,14 @@ You're welcome, world.
 
 from os import mkdir, listdir, path
 from PIL import Image as image
-import shutil
+from shutil import move as mover
 
 currentpath = '.'
 
 def imagesize(x):
-    width = image.open(x).width
-    height = image.open(x).height
-    return "{}x{}".format(str(width), str(height))
+    width = str(image.open(x).width)
+    height = str(image.open(x).height)
+    return "{}x{}".format(width, height)
 
 for i in listdir(currentpath):
     try:
@@ -21,7 +21,8 @@ for i in listdir(currentpath):
         if not path.exists(imgsize):
             mkdir(imgsize)
         else:
-            shutil.move(i, imgsize)
+            mover(i, imgsize)
             print "{} -> {}".format(i, imgsize)
     except IOError:
         pass
+
