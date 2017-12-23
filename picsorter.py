@@ -54,7 +54,7 @@ for i in current_directory:
         continue
 
 print "------------------"
-print "  Sorting complete!\n"
+print "  \n Sorting complete!\n"
 print "- Files sorted: {}".format(len(current_directory))
 print "- Images moved: {}".format(len(files))
 print "- Folders created: {}".format(len(folders))
