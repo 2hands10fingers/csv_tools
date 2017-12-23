@@ -8,7 +8,6 @@ from os import mkdir, listdir, path
 from PIL import Image as image
 from shutil import move as mover
 from math import ceil
-from time import sleep
 
 current_directory = listdir('.')
 files = []
