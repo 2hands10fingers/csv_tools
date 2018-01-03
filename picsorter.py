@@ -46,7 +46,7 @@ for i in current_directory:
     try:
         imgsize = imagesize(i)
         fileformat = image.open(i).format
-        if fileformat == 'JPEG' or fileformat == 'BMP' or fileformat == 'GIF' or fileformat == 'PNG':
+        if fileformat in ('JPEG', 'BMP', 'GIF', 'PNG'):
             mover(i, imgsize)
             files.append('*')
     except IOError:
