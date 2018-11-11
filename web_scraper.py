@@ -19,6 +19,8 @@ class Scraper:
 
 	    return headers
 
+	def get_slug(self):
+		return self.split('/')[-1]
 
 	def download_all(self, write_bytes=True, parser=None):
 
@@ -42,8 +44,7 @@ class Scraper:
 		return Scraper.download_all(self.result, parser=parser, write_bytes=write_bytes) if download_all else self.result
 
 def parsed(soup_result):
-	return [i.img["src"] for i in soup_result]
+	return [ Scraper.get_slug(i.img["src"]) for i in soup_result]
 		
 
-
-print(Scraper('https://podcastmovement.com/past-speakers/', parser='lxml').get_piece(element='div', attribute="class", attribute_name="link-box--img-container", operation=parsed))
+print(Scraper('https://website.com').get_piece(element='div', attribute="class", attribute_name="class_name", operation=parsed))
