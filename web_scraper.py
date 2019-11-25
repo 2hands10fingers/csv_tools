@@ -11,8 +11,9 @@ class Scraper:
     self.url = None if not url else f'{self.ssl}{self.www}{url}{self.domain}' #nopep8
     self.parser = parser if parser else 'lxml'
     self.headers = headers if headers else self.default_headers()
-    self.status = get(self.url, self.headers).status_code
+    self.status = get(self.url, headers=self.headers).status_code
     self.results = None
+    self.images = None
 
   
   def lprint(self, prop=None):
@@ -23,7 +24,6 @@ class Scraper:
           print(i)
         except TypeError:
           continue
-
 
     else:
       if self.results:
@@ -60,7 +60,7 @@ class Scraper:
     self.results = soup.find_all(element, { attr : attr_name })
     return self
 
-  def download_images(self, file_path, sub_folder=None):
+  def download_images(self, file_path=None, sub_folder=None):
     
     if self.images:
       folder = os.path.join(file_path, sub_folder) if sub_folder != None else file_path
@@ -78,11 +78,13 @@ class Scraper:
           if not response.status_code == 200: #OK
             continue
 
-          f.write(response.content) 
+          f.write(response.content)
+    elif self.results:
+      self.set_images().download_images(file_path, sub_folder)
 
   def get(self, prop=None):
     if prop and hasattr(self, prop):
-      print(getattr(self, prop))
+      return getattr(self, prop)
       
   def get_links(self):
     if self.links:
@@ -93,17 +95,20 @@ class Scraper:
       return self.results
   
   def get_images(self):
-    if not self.images:
+    if self.images:
       return self.images
-       
+  
+  def set_url(self, url):
+    self.url = url
+
   def set_links(self):
-     if self.results != None:
+     if self.results:
       self.links = map(lambda x: x.a["href"], self.results)
       
       return self
 
   def set_images(self):
-    if self.results != None:
+    if self.results:
       self.images = map(lambda x: x.img["src"], self.results)
       
       return self
