@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup as bs
 from requests import get, post, Session
 import os
-from datetime import datetime
 
 class Scraper:
   def __init__(self, url=None, parser=None, headers=None, www=False, ssl=False, domain=''):  #nopep8
