@@ -21,10 +21,10 @@ if __name__ == '__main__':
         imgarray.append(newpath + i)
 
     for x in imgarray:
-        change = newpath + args.newname + '-' + str(imgarray.index(x)) + "." + args.extens
+        change = f"{newpath}{args.newname}-{str(imgarray.index(x))}.{args.extens}"
 
         if x == newpath + '.DS_Store':
             pass
         else:
             rename(x, change)
-            print("--------- \n"+ x + "\n ---------- was renamed and sent to: \n" + change)
+            print(f"--------- \n{x}\n ---------- was renamed and sent to: \n change")
